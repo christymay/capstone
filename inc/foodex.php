@@ -67,7 +67,7 @@ class Foodex
 
 	function current_user(){
 		if (isset($_SESSION['isloggedin'])) {
- 			$this->dbconnect;
+ 			$this->dbconnect();
 
  			$id = $_SESSION['isloggedin'];
  			$sql = "Select * FROM users WHERE user_id = {$id}";
