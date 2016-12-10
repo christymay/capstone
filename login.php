@@ -14,6 +14,7 @@ if (isset($_POST['login'])) {
 <style>
 *{
 	font-family: arial;
+	
 }
 body > h2{
 	margin-top: 60px;
