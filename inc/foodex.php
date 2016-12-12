@@ -106,8 +106,42 @@ class Foodex
  		}
  		
  		$dbh = '';
- 		return $result;	
+		return $result;	
 
+	}
+
+	function usertype_name($usertype){
+		switch ($usertype) {
+			case 1:
+				$name = "Admin";
+				break;
+			case 2:
+				$name = "Owner";
+				break;
+			case 3:
+				$name = "Staff";
+				break;
+			case 4:
+				$name = "Student";
+				break;
+			case 5:
+				$name = "Faculty/Employee";
+				break;
+			default:
+				break;
+		}
+		return $name;
+ 	}
+
+ 	function usertypes(){
+ 		$arrayName = array(
+ 				1 => 'Admin', 
+ 				2 => 'Owner', 
+ 				3 => 'Staff', 
+ 				4 => 'Student', 
+ 				5 => 'Faculty/Employee', 
+ 			);
+ 		return $arrayName;
  	}
 }
 ?>

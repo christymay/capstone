@@ -25,11 +25,12 @@ class Store extends Foodex
 		$this->dbconnect();
 		foreach ($data['store'] as $key => $value) {
 			$fieldsarr[] = $key;
-			$valuesarr[] = $value;
+			$valuesarr[] = addslashes($value);
 		}
 		$fields = implode(',', $fieldsarr);
 		$values = implode("','", $valuesarr);
 		$sql = "INSERT into store ($fields) values ('$values')";
+		echo $sql;
 		try{
 			$stmt = $this->dbh->prepare($sql);
 			if ($stmt->execute()) {
@@ -48,7 +49,7 @@ class Store extends Foodex
 		/* Foreach Interval */
 		$this->dbconnect();
 		foreach ($data['store'] as $key => $value) {
-			$setarr[] = $key."='".$value."'";
+			$setarr[] = $key."='".addslashes($value)."'";
 		}
 		$sets = implode(',', $setarr);
 		$sql = "UPDATE store SET {$sets} WHERE store_id={$id}";
@@ -85,8 +86,19 @@ class Store extends Foodex
 
 	}
 
+	function get_store_by_id($id){
+		$this->dbconnect();
 
+		$sql = "Select * FROM store WHERE store_id = {$id}";
+		$stmt = $this->dbh->prepare($sql);
+		$stmt->execute();
+		$cou = $stmt->rowCount();
+		$result = $stmt->fetch();
 
+		$dbh = '';
+		return $result;	
+
+	}
 
 }
 
