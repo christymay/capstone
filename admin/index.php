@@ -17,7 +17,10 @@ $theuser = $user->current_user();
 <p>Welcome to your Dashboard!</p>
 <a href="<?php echo $user->base_url().'admin/building'; ?>">Building</a><br>
 <a href="<?php echo $user->base_url().'admin/store'; ?>">Store</a><br>
+<a href="<?php echo $user->base_url().'admin/user'; ?>">User</a><br>
 
+<br><br>
+<a href="<?php echo $user->base_url().'logout.php'; ?>">Logout</a><br>
 
 </body>
 </html>

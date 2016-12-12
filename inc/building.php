@@ -39,7 +39,7 @@ class Building extends Foodex
 		$this->dbconnect();
 		foreach ($data['building'] as $key => $value) {
 			$fieldsarr[] = $key;
-			$valuesarr[] = $value;
+			$valuesarr[] = addslashes($value);
 		}
 		$fields = implode(',', $fieldsarr);
 		$values = implode("','", $valuesarr);
@@ -62,7 +62,7 @@ class Building extends Foodex
 		/* Foreach Interval */
 		$this->dbconnect();
 		foreach ($data['building'] as $key => $value) {
-			$setarr[] = $key."='".$value."'";
+			$setarr[] = $key."='".addslashes($value)."'";
 		}
 		$sets = implode(',', $setarr);
 		$sql = "UPDATE building SET {$sets} WHERE bldg_id={$id}";
