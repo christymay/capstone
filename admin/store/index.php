@@ -32,4 +32,4 @@ foreach ($storedata as $key => $value) {
 ?>
 </table>
 
-This is the building INDEX!
+This is the STORE INDEX!

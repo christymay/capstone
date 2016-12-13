@@ -65,6 +65,27 @@ class Foodex
 		}
 	}
 
+	function current_user_id(){
+		if (isset($_SESSION['isloggedin'])) {
+ 			$this->dbconnect();
+
+ 			$id = $_SESSION['isloggedin'];
+ 			$sql = "Select user_id FROM users WHERE user_id = {$id}";
+	 		$stmt = $this->dbh->prepare($sql);
+	 		$stmt->execute();
+	 		$cou = $stmt->rowCount();
+	 		if($cou == 1){
+	 			$result = $stmt->fetch();
+	 		}
+	 		else{
+	 			$result = null;
+	 		}
+	 		
+	 		$dbh = '';
+	 		return $result['user_id'];	
+		}
+	}
+
 	function current_user(){
 		if (isset($_SESSION['isloggedin'])) {
  			$this->dbconnect();
@@ -142,6 +163,19 @@ class Foodex
  				5 => 'Faculty/Employee', 
  			);
  		return $arrayName;
+ 	}
+
+ 	function my_store($user_id){
+ 		$this->dbconnect();
+
+		$sql = "Select * FROM store WHERE user_id = {$user_id}";
+		$stmt = $this->dbh->prepare($sql);
+		$stmt->execute();
+		$cou = $stmt->rowCount();
+		$result = $stmt->fetchAll();
+
+		$dbh = '';
+		return $result;	
  	}
 }
 ?>

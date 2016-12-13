@@ -33,7 +33,7 @@ $user = $store->current_user();
 	<label>Store Location:</label>
 	<input type="text" class="form-control" name="store[store_location]" placeholder="Store Location" required><br>
 
-	<label>User type:</label>
+	<label>Building:</label>
 	<select class="form-control" name="store[bldg_id]" required>
 	<option value="0">-Select building-</option>
 	<?php
