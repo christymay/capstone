@@ -1,9 +1,8 @@
 a<?php
 include '../../inc/store.php';
-//include '../../inc/users.php';
 
 $store = new store;
-//$user->isloggedin();   
+$store->isloggedin();   
 
 echo "<pre>";
 $storedata = $store->get_store();

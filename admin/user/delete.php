@@ -1,10 +1,10 @@
 <?php
-include '../../inc/store.php';
+include '../../inc/users.php';
 
-$store = new Store;
-$store->isloggedin();
+$user = new Users;
+$user->isloggedin();
 $id = $_GET['id'];
-  $res = $store->delete_store($id);
+  $res = $user->delete_user($id);
   if ($res) {
     echo "Successfully deleted!</br></br>";
     header('location: index.php');
