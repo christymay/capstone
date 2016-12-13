@@ -1,8 +1,7 @@
-<?php
+a<?php
 include '../../inc/store.php';
 //include '../../inc/users.php';
 
-//$user = new Users;
 $store = new store;
 //$user->isloggedin();   
 
