@@ -1,4 +1,4 @@
-<?php
+a<?php
 include '../../inc/store.php';
 
 $store = new store;
