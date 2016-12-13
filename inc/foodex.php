@@ -65,9 +65,30 @@ class Foodex
 		}
 	}
 
+	function current_user_id(){
+		if (isset($_SESSION['isloggedin'])) {
+ 			$this->dbconnect();
+
+ 			$id = $_SESSION['isloggedin'];
+ 			$sql = "Select user_id FROM users WHERE user_id = {$id}";
+	 		$stmt = $this->dbh->prepare($sql);
+	 		$stmt->execute();
+	 		$cou = $stmt->rowCount();
+	 		if($cou == 1){
+	 			$result = $stmt->fetch();
+	 		}
+	 		else{
+	 			$result = null;
+	 		}
+	 		
+	 		$dbh = '';
+	 		return $result['user_id'];	
+		}
+	}
+
 	function current_user(){
 		if (isset($_SESSION['isloggedin'])) {
- 			$this->dbconnect;
+ 			$this->dbconnect();
 
  			$id = $_SESSION['isloggedin'];
  			$sql = "Select * FROM users WHERE user_id = {$id}";
@@ -106,8 +127,55 @@ class Foodex
  		}
  		
  		$dbh = '';
- 		return $result;	
+		return $result;	
 
+	}
+
+	function usertype_name($usertype){
+		switch ($usertype) {
+			case 1:
+				$name = "Admin";
+				break;
+			case 2:
+				$name = "Owner";
+				break;
+			case 3:
+				$name = "Staff";
+				break;
+			case 4:
+				$name = "Student";
+				break;
+			case 5:
+				$name = "Faculty/Employee";
+				break;
+			default:
+				break;
+		}
+		return $name;
+ 	}
+
+ 	function usertypes(){
+ 		$arrayName = array(
+ 				1 => 'Admin', 
+ 				2 => 'Owner', 
+ 				3 => 'Staff', 
+ 				4 => 'Student', 
+ 				5 => 'Faculty/Employee', 
+ 			);
+ 		return $arrayName;
+ 	}
+
+ 	function my_store($user_id){
+ 		$this->dbconnect();
+
+		$sql = "Select * FROM store WHERE user_id = {$user_id}";
+		$stmt = $this->dbh->prepare($sql);
+		$stmt->execute();
+		$cou = $stmt->rowCount();
+		$result = $stmt->fetchAll();
+
+		$dbh = '';
+		return $result;	
  	}
 }
 ?>

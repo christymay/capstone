@@ -6,7 +6,8 @@ if (isset($_POST['login'])) {
   $res = $user->login($_POST);
   if ($res) {
     $user->usertype_redirect($res['type']);
-  }
+  }else
+  	echo "Invalid Username and Password!";
 }
 ?>
 <!DOCTYPE html>
@@ -14,6 +15,7 @@ if (isset($_POST['login'])) {
 <style>
 *{
 	font-family: arial;
+	
 }
 body > h2{
 	margin-top: 60px;

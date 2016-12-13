@@ -1,10 +1,11 @@
 <?php
-include '../../inc/users.php';
 include '../../inc/store.php';
+include '../../inc/building.php';
 
-//$user = new Users;
+
 $store = new Store;
-//$user->isloggedin(); 
+$bldg = new Building;
+$store->isloggedin(); 
 
 $id = $_GET['id'];
 $sdata = $store->get_store_by_id($id);
@@ -27,11 +28,25 @@ if (isset($_POST['editstore'])) {
 <form method="post">
 
 	<label>Store Name:</label>
-	<input type="text" class="form-control" name="store[store_name]" placeholder="Store Name" value="<?php echo $sdata['store_name']?>" required>
+	<input type="text" class="form-control" name="store[store_name]" placeholder="Store Name" value="<?php echo $sdata['store_name']?>" required><br>
 
 	<label>Store Location:</label>
-	<input type="text" class="form-control" name="store[store_location]" placeholder="Store Location" value="<?php echo $sdata['store_location']?>" required>
-
+	<input type="text" class="form-control" name="store[store_location]" placeholder="Store Location" value="<?php echo $sdata['store_location']?>" required><br>
+	
+	<select class="form-control" name="store[bldg_id]" required>
+	<option value="0">-Select building-</option>
+	<?php
+		$building = $bldg->get_bldg();
+		var_dump($building);
+		foreach ($building as $b) {
+			if ($b['bldg_id'] == $sdata['bldg_id']) {
+				echo "<option value='".$b['bldg_id']."' selected>".$b['bldg_name']."</option>";
+			}else{
+				echo "<option value='".$b['bldg_id']."'>".$b['bldg_name']."</option>";	
+			}
+		}
+	?>
+	</select><br>
 
 	<input type="submit" name="editstore" value="Update">
 </form>

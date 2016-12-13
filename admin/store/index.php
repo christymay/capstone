@@ -1,10 +1,8 @@
 <?php
 include '../../inc/store.php';
-//include '../../inc/users.php';
 
-//$user = new Users;
 $store = new store;
-//$user->isloggedin();   
+$store->isloggedin();   
 
 echo "<pre>";
 $storedata = $store->get_store();
@@ -34,4 +32,4 @@ foreach ($storedata as $key => $value) {
 ?>
 </table>
 
-This is the building INDEX!
+This is the STORE INDEX!
